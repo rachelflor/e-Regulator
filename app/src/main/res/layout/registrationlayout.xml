@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_margin="20dp">
+
+    <EditText
+        android:id="@+id/text_firstname"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/lbfirstname"
+        android:background="@color/inputBackground"
+        android:inputType="text"
+        android:textSize="18sp"
+        android:drawableStart="@drawable/ic_person_black_24dp"
+        android:drawablePadding="20dp"
+        android:paddingStart="10dp"
+        />
+
+    <EditText
+        android:id="@+id/text_lastname"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/lblastname"
+        android:background="@color/inputBackground"
+        android:inputType="text"
+        android:textSize="18sp"
+        android:drawableStart="@drawable/ic_person_black_24dp"
+        android:drawablePadding="20dp"
+        android:paddingStart="10dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <EditText
+        android:id="@+id/text_email"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/lbemail"
+        android:background="@color/inputBackground"
+        android:inputType="textEmailAddress"
+        android:textSize="18sp"
+        android:drawableStart="@drawable/ic_email_black_24dp"
+        android:drawablePadding="20dp"
+        android:paddingStart="10dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <EditText
+        android:id="@+id/text_password"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/lbpassword"
+        android:background="@color/inputBackground"
+        android:inputType="textPassword"
+        android:textSize="18sp"
+        android:drawableStart="@drawable/ic_lock_black_24dp"
+        android:drawablePadding="20dp"
+        android:paddingStart="10dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <EditText
+        android:id="@+id/text_password_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/lbpasswordConfirm"
+        android:background="@color/inputBackground"
+        android:inputType="textPassword"
+        android:textSize="18sp"
+        android:drawablePadding="20dp"
+        android:paddingStart="10dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="@string/btnregister"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/textColor"
+        android:textSize="18sp"
+        android:layout_marginTop="60dp"
+        />
+
+</LinearLayout>

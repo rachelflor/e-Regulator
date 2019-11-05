@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">e-Regulator</string>
+    <string name="lbusername">Username</string>
+    <string name="lbpassword">Password</string>
+    <string name="lbpasswordConfirm">Password confirm</string>
+    <string name="lbfirstname">Firstname</string>
+    <string name="lblastname">Lastname</string>
+    <string name="lbemail">Email</string>
+
+    <string name="btnlogin">LOGIN</string>
+    <string name="btnregister">REGISTER</string>
+
+
+</resources>
