@@ -3,12 +3,37 @@
     <string name="lbusername">Username</string>
     <string name="lbpassword">Password</string>
     <string name="lbpasswordConfirm">Password confirm</string>
+    <string name="neu_registierung">Bist du neu? Registieren</string>
     <string name="lbfirstname">Firstname</string>
     <string name="lblastname">Lastname</string>
     <string name="lbemail">Email</string>
 
     <string name="btnlogin">LOGIN</string>
     <string name="btnregister">REGISTER</string>
+    <string name="btncancel">ABBRECHEN</string>
+    <string name="btnadd">HINZUFÜGEN</string>
+
+    <string name="apparat1">Gerät1</string>
+    <string name="lpriority">Priorität auswählen</string>
+    <string name="loginInputError">Username oder Password darf nicht leer sein!</string>
+    <string name="loginInputLengthError">Username oder Password muss 6 Zeichen lang sein.</string>
+
+    <string name="geraetDescription">Gerät Bezeichnung</string>
+
+
+    <string-array name="priorities">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string name="title_feed">Übersicht</string>
+    <string name="title_user">Profil</string>
+    <string name="title_forum">Community</string>
+
+    <string name="feedpage_title">Geräte</string>
+    <string name="communitypage_title">Community</string>
 
 
 </resources>

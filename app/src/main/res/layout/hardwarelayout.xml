@@ -23,23 +23,12 @@
             android:rowCount="3">
 
             <ImageButton
-                android:id="@+id/refrigerator"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@color/textColor"
-                android:scaleType="fitXY"
-                android:layout_row="0"
-                android:layout_column="0"
-                android:contentDescription="@string/apparat1"
-                android:src="@drawable/ic_refrigerator" />
-
-            <ImageButton
                 android:id="@+id/smartphone"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:scaleType="fitXY"
                 android:layout_row="0"
-                android:layout_column="1"
+                android:layout_column="0"
                 android:background="@color/textColor"
                 android:contentDescription="@string/apparat1"
                 android:src="@drawable/ic_smartphone_call" />
@@ -49,7 +38,7 @@
                 android:layout_height="120dp"
                 android:scaleType="fitXY"
                 android:layout_row="0"
-                android:layout_column="2"
+                android:layout_column="1"
                 android:background="@color/textColor"
                 android:contentDescription="@string/apparat1"
                 android:src="@drawable/ic_smartwatch" />
@@ -58,8 +47,8 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:scaleType="fitXY"
-                android:layout_row="1"
-                android:layout_column="0"
+                android:layout_row="0"
+                android:layout_column="2"
                 android:background="@color/textColor"
                 android:contentDescription="@string/apparat1"
                 android:src="@drawable/ic_television" />
@@ -69,20 +58,10 @@
                 android:layout_height="120dp"
                 android:scaleType="fitXY"
                 android:layout_row="1"
-                android:layout_column="1"
+                android:layout_column="0"
                 android:background="@color/textColor"
                 android:contentDescription="@string/apparat1"
                 android:src="@drawable/ic_laptop" />
-            <ImageButton
-                android:id="@+id/microwave"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:scaleType="fitXY"
-                android:layout_row="1"
-                android:layout_column="2"
-                android:background="@color/textColor"
-                android:contentDescription="@string/apparat1"
-                android:src="@drawable/ic_microwave" />
         </GridLayout>
     </ScrollView>
     <EditText
@@ -129,8 +108,8 @@
             android:text="@string/btnadd" />
 
     </com.google.android.flexbox.FlexboxLayout>
-<include
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    layout="@layout/footerlayout"/>
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/footerlayout"/>
 </LinearLayout>

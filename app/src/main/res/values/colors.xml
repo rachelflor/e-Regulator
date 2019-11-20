@@ -5,4 +5,9 @@
     <color name="colorAccent">#D81B60</color>
     <color name="inputBackground">#ecf3d4</color>
     <color name="textColor">#FFFFFF</color>
+    <color name="yellow">#cccc00</color>
+    <color name="blue">#009a9a</color>
+    <color name="pink">#ff4d4d </color>
+    <color name="ic_logo_background">#FFFFFF</color>
+
 </resources>
