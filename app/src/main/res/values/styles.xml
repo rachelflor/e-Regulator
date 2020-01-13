@@ -8,6 +8,9 @@
         <item name="android:titleTextColor">@color/colorPrimary</item>
     </style>
 
+    <style name="nav" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    </style>
+
     <style name="buttons" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textSize">20sp</item>
         <item name="android:width">180dp</item>

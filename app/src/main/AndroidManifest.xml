@@ -9,7 +9,17 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".addHardwareActivity"></activity>
+        <activity
+            android:name=".CommunityActivity"
+            android:label="@string/forumlabel"
+            android:theme="@style/nav"
+            android:icon="@drawable/ic_group_black_24dp"/>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/profillabel"
+            android:theme="@style/nav"
+            android:icon="@drawable/ic_account_circle_black_24dp"/>
+        <activity android:name=".addHardwareActivity" />
         <activity
             android:name=".HomepageActivity"
             android:label="@string/feedpage_title" />
