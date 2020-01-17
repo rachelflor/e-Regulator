@@ -1,10 +1,7 @@
-package com.example.e_regulator.Model;
+public class User {
+    private String username, email, password;
 
-public class User extends Person {
-    public String username, email, password;
-
-    public User(String vorname, String nachname, String username, String email, String password) {
-        super(vorname, nachname);
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
