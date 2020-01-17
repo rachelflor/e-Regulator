@@ -7,6 +7,8 @@
     <string name="lbfirstname">Firstname</string>
     <string name="lblastname">Lastname</string>
     <string name="lbemail">Email</string>
+    <string name="forumlabel">Community</string>
+    <string name="profillabel">Profil</string>
 
     <string name="btnlogin">LOGIN</string>
     <string name="btnregister">REGISTER</string>
@@ -48,6 +50,8 @@
 
     <string name="feedpage_title">Geräte</string>
     <string name="communitypage_title">Community</string>
+
+    <string name="message">Test</string>
 
 
 </resources>
