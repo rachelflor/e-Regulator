@@ -28,6 +28,20 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+
+    <string-array name="deviceCategorie">
+        <item>Smartphone</item>
+        <item>Smartwatch</item>
+        <item>Laptop</item>
+        <item>Kopfhörer</item>
+        <item>Tablet</item>
+    </string-array>
+
+    <string-array name="nonHardwareDeviceCategory">
+        <item>Microwelle</item>
+        <item>Kühlschrank</item>
+        <item>Ofen</item>
+    </string-array>
     <string name="title_feed">Übersicht</string>
     <string name="title_user">Profil</string>
     <string name="title_forum">Community</string>

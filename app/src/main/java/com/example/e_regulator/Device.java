@@ -5,12 +5,14 @@ public class Device {
     private int priority;
     private String description;
     private String category;
+    private int icon;
 
-    public Device(String id,int priority, String description, String category) {
+    public Device(String id,int priority, String description, String category, int icon) {
         this.id = id;
         this.priority = priority;
         this.description = description;
         this.category = category;
+        this.icon = icon;
     }
 
     public String getId() {
@@ -43,5 +45,13 @@ public class Device {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
 }

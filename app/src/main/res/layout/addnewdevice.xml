@@ -1,91 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    tools:context=".AddDeviceActivity"
     android:padding="10dp"
     app:alignItems="center"
     app:flexDirection="column"
     android:background="@color/textColor"
     app:flexWrap="wrap">
 
-    <ScrollView
+    <ListView
+        android:id="@+id/nothardwareDevice"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="3"
-            android:useDefaultMargins="true"
-            android:orientation="vertical"
-            android:paddingBottom="20dp"
-            android:rowCount="3">
-
-            <ImageButton
-                android:id="@+id/refrigerator"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@color/textColor"
-                android:scaleType="fitXY"
-                android:layout_row="0"
-                android:layout_column="0"
-                android:contentDescription="@string/apparat1"
-                android:src="@drawable/ic_refrigerator" />
-
-            <ImageButton
-                android:id="@+id/smartphone"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:scaleType="fitXY"
-                android:layout_row="0"
-                android:layout_column="1"
-                android:background="@color/textColor"
-                android:contentDescription="@string/apparat1"
-                android:src="@drawable/ic_smartphone_call" />
-            <ImageButton
-                android:id="@+id/smartwatch"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:scaleType="fitXY"
-                android:layout_row="0"
-                android:layout_column="2"
-                android:background="@color/textColor"
-                android:contentDescription="@string/apparat1"
-                android:src="@drawable/ic_smartwatch" />
-            <ImageButton
-                android:id="@+id/television"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:scaleType="fitXY"
-                android:layout_row="1"
-                android:layout_column="0"
-                android:background="@color/textColor"
-                android:contentDescription="@string/apparat1"
-                android:src="@drawable/ic_television" />
-            <ImageButton
-                android:id="@+id/laptop"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:scaleType="fitXY"
-                android:layout_row="1"
-                android:layout_column="1"
-                android:background="@color/textColor"
-                android:contentDescription="@string/apparat1"
-                android:src="@drawable/ic_laptop" />
-            <ImageButton
-                android:id="@+id/microwave"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:scaleType="fitXY"
-                android:layout_row="1"
-                android:layout_column="2"
-                android:background="@color/textColor"
-                android:contentDescription="@string/apparat1"
-                android:src="@drawable/ic_microwave" />
-        </GridLayout>
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:focusableInTouchMode="true"
+        android:headerDividersEnabled="false"
+        android:listSelector="@color/inputBackground"
+        android:dividerHeight="0dp"
+        android:divider="@null"    />
     <EditText
+        android:id="@+id/deviceDescription"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/inputBackground"
@@ -105,30 +44,13 @@
         android:prompt="@string/lpriority"
         android:spinnerMode="dropdown" />
 
-    <com.google.android.flexbox.FlexboxLayout
+    <Button
+        android:id="@+id/confirm_add"
+        style="@style/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:alignItems="center"
-        app:flexDirection="row"
-        app:flexWrap="wrap"
-        app:justifyContent="space_between">
+        android:text="@string/btnadd" />
 
-        <Button
-            android:id="@+id/cancel_add"
-            style="@style/buttons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btncancel" />
-
-        <Button
-            android:id="@+id/confirm_add"
-            style="@style/buttons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btnadd" />
-
-    </com.google.android.flexbox.FlexboxLayout>
 <include
     android:layout_width="match_parent"
     android:layout_height="match_parent"

@@ -18,17 +18,33 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v4.app.*;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+    private FirebaseAuth firebaseAuth;
     private EditText editUsername, editPassword;
     private Button loginButton;
     private TextView loginError, newRegistration;
     private ActionBar actionBar;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        firebaseAuth.updateCurrentUser(currentUser);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginlayout);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setIcon(R.drawable.ic_green_energy);
