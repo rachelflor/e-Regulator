@@ -1,7 +1,9 @@
 package com.example.e_regulator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,6 +11,7 @@ import android.graphics.Outline;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewOutlineProvider;
@@ -18,24 +21,27 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v4.app.*;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private FirebaseAuth firebaseAuth;
-    private EditText editUsername, editPassword;
+    private EditText editPassword, editEmail;
     private Button loginButton;
-    private TextView loginError, newRegistration;
-    private ActionBar actionBar;
+    private TextView loginError, newRegistration, loginLengthError, authError;
+    private BottomNavigationView menuNavigation;
 
     @Override
     protected void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        firebaseAuth.updateCurrentUser(currentUser);
     }
 
     @Override
@@ -43,33 +49,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginlayout);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_green_energy);
+        getSupportActionBar().setTitle(R.string.app_name);
+
         firebaseAuth = FirebaseAuth.getInstance();
 
-        actionBar = getSupportActionBar();
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setIcon(R.drawable.ic_green_energy);
-        actionBar.setTitle(R.string.app_name);
-
-        editUsername = findViewById(R.id.text_username) ;
         editPassword = findViewById(R.id.text_password);
+        editEmail = findViewById(R.id.text_emailLogin);
         loginButton = findViewById(R.id.login_button);
         loginError = findViewById(R.id.loginInput_error);
+        authError = findViewById(R.id.auth_error);
+        loginLengthError = findViewById(R.id.loginInputLength_error);
         newRegistration = findViewById(R.id.register_link);
 
-        editUsername.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        menuNavigation = findViewById(R.id.nav_container);
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(loginError.getVisibility() == View.VISIBLE){
-                    loginError.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
 
         editPassword.addTextChangedListener(new TextWatcher() {
             @Override
@@ -97,29 +92,71 @@ public class MainActivity extends AppCompatActivity {
 
         loginButton.setOnClickListener( new View.OnClickListener(){
             public void onClick(View view){
-                if(getIsEmpty(editUsername) || getIsEmpty(editPassword)){
+                if(getIsEmpty(editEmail) || getIsEmpty(editPassword)){
                     loginError.setVisibility(View.VISIBLE);
-                }
-                if(isUsernameAndPasswordValid(editUsername,editPassword,6,6)){
-                    startActivity(new Intent(MainActivity.this,HomepageActivity.class));
+                } else if(!isUsernameAndPasswordValid(editEmail,editPassword,6,6)) {
+                    loginLengthError.setVisibility(View.VISIBLE);
+                } else {
+                    firebaseAuth.signInWithEmailAndPassword(editEmail.getText().toString(), editPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                             if(task.isSuccessful()){
+                                startActivity(new Intent(MainActivity.this,HomepageActivity.class));
+                            } else {
+                                 authError.setVisibility(View.VISIBLE);
+                             }
+                    }
+                });
                 }
             }
         });
     }
 
-    private boolean getIsEmpty(EditText editText){
+    public boolean getIsEmpty(EditText editText){
         String value = editText.getText().toString();
        return value.isEmpty();
     }
 
-    private boolean getIsLengthValid(EditText editText, int minLength){
+    public boolean getIsLengthValid(EditText editText, int minLength){
        return editText.getText().length() >= minLength;
     }
 
-    private boolean isUsernameAndPasswordValid(EditText editText1, EditText editText2, int length1, int length2){
+    public boolean isUsernameAndPasswordValid(EditText editText1, EditText editText2, int length1, int length2){
         return !getIsEmpty(editText1) && !getIsEmpty(editText2) &&
                 getIsLengthValid(editText1,length1) &&
                 getIsLengthValid(editText2,length2) ;
     }
+
+   /* private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+            Fragment fragment = null;
+
+            switch (menuItem.getItemId()) {
+                case R.id.user:
+                    fragment = new ProfileActivity();
+                    break;
+
+                case R.id.forum:
+                    fragment = new CommunityActivity();
+                    break;
+            }
+            return loadFragment(fragment);
+        }
+    };
+
+    private boolean loadFragment(Fragment fragment){
+        if(fragment != null){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+            return true;
+        }
+        return false;
+    } */
+
+
 
 }

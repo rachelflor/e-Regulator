@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,10 +8,20 @@
     android:gravity="bottom"
     tools:context=".ProfileActivity">
 
+    <TextView
+        android:id="@+id/profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/authError"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"
+        style="@style/error"
+        />
+
     <include
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         layout="@layout/footerlayout"
     />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -13,30 +13,39 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class HomepageActivity extends AppCompatActivity {
     private FloatingActionButton floatingButtonAdd,
-            floatingButtonClear,floatingButtonYellow,
-            floatingButtonPink, floatingButtonBlue;
-    private ActionBar actionBar;
+            floatingButtonClear,floatingButtonYellow,floatingButtonPink;
     private ListView deviceList;
+    private ArrayList<Device> arrayDeviceList;
+    private DatabaseReference databaseReference;
+    private FirebaseDatabase firebaseDatabase;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepagelayout);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_green_energy);
+        getSupportActionBar().setTitle("Devices");
+
         deviceList = (ListView) findViewById(R.id.added_device_list);
-        actionBar = getSupportActionBar();
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setIcon(R.drawable.ic_green_energy);
-        actionBar.setTitle(R.string.feedpage_title);
-        actionBar.setDisplayShowTitleEnabled(true);
+
+        AddedDeviceAdapter adapter = new AddedDeviceAdapter();
+        deviceList.setAdapter(adapter);
+
 
         floatingButtonAdd = findViewById(R.id.floating_button);
         floatingButtonClear = findViewById(R.id.floating_button_clear);
-        floatingButtonBlue = findViewById(R.id.floatingBlue);
         floatingButtonYellow = findViewById(R.id.floatingYellow);
         floatingButtonPink = findViewById(R.id.floatingPink);
 
@@ -57,65 +66,57 @@ public class HomepageActivity extends AppCompatActivity {
         floatingButtonYellow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomepageActivity.this,addHardwareActivity.class));
+                startActivity(new Intent(HomepageActivity.this, AddDeviceActivity.class));
                 hideTopButton();
             }
         });
+    }
 
-        floatingButtonBlue.setOnClickListener(new View.OnClickListener() {
+
+        private void hideTopButton(){
+            floatingButtonAdd.show();
+            floatingButtonClear.hide();
+            floatingButtonYellow.hide();
+            floatingButtonPink.hide();
+
+        }
+
+        private void showTopButton(){
+            floatingButtonAdd.hide();
+            floatingButtonClear.show();
+            floatingButtonYellow.show();
+            floatingButtonPink.show();
+
+        }
+
+
+        class AddedDeviceAdapter extends BaseAdapter {
+
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomepageActivity.this,AddDeviceActivity.class));
-                hideTopButton();
+            public int getCount() {
+                return 1;
             }
-        });
-    }
 
-    private void hideTopButton(){
-        floatingButtonAdd.show();
-        floatingButtonClear.hide();
-        floatingButtonBlue.hide();
-        floatingButtonYellow.hide();
-        floatingButtonPink.hide();
+            @Override
+            public Object getItem(int position) {
+                return null;
+            }
 
-    }
+            @Override
+            public long getItemId(int position) {
+                return 0;
+            }
 
-    private void showTopButton(){
-        floatingButtonAdd.hide();
-        floatingButtonClear.show();
-        floatingButtonBlue.show();
-        floatingButtonYellow.show();
-        floatingButtonPink.show();
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                convertView = getLayoutInflater().inflate(R.layout.deviceitem,null);
 
-    }
+                ImageView imageView = (ImageView)convertView.findViewById(R.id.item_icon_category);
+                TextView textView = (TextView)convertView.findViewById(R.id.item_description);
+                TextView textView1 = (TextView)convertView.findViewById(R.id.item_priority);
 
-
-    class AddedDeviceAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return 1;
+                return convertView;
+            }
         }
 
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            convertView = getLayoutInflater().inflate(R.layout.deviceitem,null);
-
-            ImageView imageView = (ImageView)convertView.findViewById(R.id.item_icon_category);
-            TextView textView = (TextView)convertView.findViewById(R.id.item_description);
-            TextView textView1 = (TextView)convertView.findViewById(R.id.item_priority);
-
-            return convertView;
-        }
     }
-}

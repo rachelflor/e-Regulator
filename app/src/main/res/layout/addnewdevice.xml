@@ -21,8 +21,7 @@
         android:focusableInTouchMode="true"
         android:headerDividersEnabled="false"
         android:listSelector="@color/inputBackground"
-        android:dividerHeight="0dp"
-        android:divider="@null"    />
+        />
     <EditText
         android:id="@+id/deviceDescription"
         android:layout_width="match_parent"

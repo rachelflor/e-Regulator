@@ -2,17 +2,18 @@ package com.example.e_regulator;
 
 public class Device {
     private String id;
+    private String userId;
     private int priority;
     private String description;
     private String category;
     private int icon;
 
-    public Device(String id,int priority, String description, String category, int icon) {
+    public Device(String id,String userId, int priority, String description, String category) {
         this.id = id;
+        this.userId = userId;
         this.priority = priority;
         this.description = description;
         this.category = category;
-        this.icon = icon;
     }
 
     public String getId() {
@@ -21,6 +22,14 @@ public class Device {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public int getPriority() {

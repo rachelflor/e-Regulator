@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/textColor</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:titleTextColor">@color/colorPrimary</item>
+        <item name="titleTextColor">@color/colorPrimary</item>
     </style>
 
     <style name="nav" parent="Theme.AppCompat.DayNight.DarkActionBar">
@@ -28,6 +28,11 @@
     <style name="error" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textSize">18dp</item>
         <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="success" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/success</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

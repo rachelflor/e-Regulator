@@ -9,31 +9,68 @@
     android:background="@color/textColor"
     android:padding="20dp">
 
-    <EditText
-        android:id="@+id/text_firstname"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="@string/lbfirstname"
-        android:background="@color/inputBackground"
-        android:inputType="text"
-        android:textSize="18sp"
-        android:drawableStart="@drawable/ic_person_black_24dp"
-        android:drawablePadding="20dp"
-        android:paddingStart="10dp"
+
+    <TextView
+        android:id="@+id/registerInput_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registerInputError"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"
+        style="@style/error"
+        />
+    <TextView
+        android:id="@+id/registerInputLength_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loginInputLengthError"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"
+        style="@style/error"
         />
 
+    <TextView
+        android:id="@+id/register_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registrationError"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"
+        style="@style/error"
+        />
+
+    <TextView
+        android:id="@+id/register_notsuccesfull"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registrationNotSuccessfull"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"
+        style="@style/error"
+        />
+
+    <TextView
+        android:id="@+id/register_succesfull"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registrationSuccessfull"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"
+        style="@style/success"
+        />
+
+
     <EditText
-        android:id="@+id/text_lastname"
+        android:id="@+id/text_rusername"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="@string/lblastname"
+        android:hint="@string/lbrusername"
         android:background="@color/inputBackground"
         android:inputType="text"
         android:textSize="18sp"
         android:drawableStart="@drawable/ic_person_black_24dp"
         android:drawablePadding="20dp"
         android:paddingStart="10dp"
-        android:layout_marginTop="20dp"
         />
 
     <EditText
@@ -72,6 +109,7 @@
         android:background="@color/inputBackground"
         android:inputType="textPassword"
         android:textSize="18sp"
+        android:drawableStart="@drawable/ic_lock_black_24dp"
         android:drawablePadding="20dp"
         android:paddingStart="10dp"
         android:layout_marginTop="20dp"

@@ -9,5 +9,6 @@
     <color name="blue">#009a9a</color>
     <color name="pink">#ff4d4d </color>
     <color name="ic_logo_background">#FFFFFF</color>
+    <color name="success">#4BB543</color>
 
 </resources>

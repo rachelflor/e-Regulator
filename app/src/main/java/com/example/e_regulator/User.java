@@ -1,21 +1,21 @@
 package com.example.e_regulator;
 
 public class User {
-    private int id;
+    private String id;
     private String username, email, password;
 
-    public User(int id, String username, String email, String password) {
+    public User(String id, String username, String email, String password) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

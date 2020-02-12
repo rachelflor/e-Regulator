@@ -4,8 +4,7 @@
     <string name="lbpassword">Password</string>
     <string name="lbpasswordConfirm">Password confirm</string>
     <string name="neu_registierung">Bist du neu? Registieren</string>
-    <string name="lbfirstname">Firstname</string>
-    <string name="lblastname">Lastname</string>
+    <string name="lbrusername">Username</string>
     <string name="lbemail">Email</string>
     <string name="forumlabel">Community</string>
     <string name="profillabel">Profil</string>
@@ -17,8 +16,13 @@
 
     <string name="apparat1">Gerät1</string>
     <string name="lpriority">Priorität auswählen</string>
+    <string name="authError">Login failed. Please try again!</string>
     <string name="loginInputError">Username oder Password darf nicht leer sein!</string>
+    <string name="registerInputError">Username, Email and Password muss not be empty</string>
     <string name="loginInputLengthError">Username oder Password muss 6 Zeichen lang sein.</string>
+    <string name="registrationError">Something went wrong. Please try again!</string>
+    <string name="registrationSuccessfull">You are successfully registred!</string>
+    <string name="registrationNotSuccessfull">Something went wrong. Please try again!</string>
 
     <string name="geraetDescription">Gerät Bezeichnung</string>
 
@@ -48,7 +52,7 @@
     <string name="title_user">Profil</string>
     <string name="title_forum">Community</string>
 
-    <string name="feedpage_title">Geräte</string>
+    <string name="feedpage_title">Devices</string>
     <string name="communitypage_title">Community</string>
 
     <string name="message">Test</string>

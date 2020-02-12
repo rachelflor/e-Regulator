@@ -1,5 +1,7 @@
 package com.example.e_regulator;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -21,6 +23,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,49 +33,67 @@ public class AddDeviceActivity extends AppCompatActivity {
     private ListView deviceList;
     private String [] deviceName;
     private LinearLayout linearLayout;
+    private Button addDeviceButton;
     public EditText description;
-    private Resources res = getResources();
-    private int [] drawable =  {R.drawable.ic_microwave, R.drawable.ic_refrigerator, R.drawable.ic_kitchen_black_24dp};
+    private String categoryContainer;
+   // private int [] drawable =  {R.drawable.ic_microwave, R.drawable.ic_refrigerator, R.drawable.ic_kitchen_black_24dp};
 
-    DatabaseReference databaseDevices;
+    DatabaseReference databaseReference;
+    String currentUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addnewdevice);
 
-        spinner = (Spinner) findViewById(R.id.spinner);
-        linearLayout = (LinearLayout) findViewById(R.id.listItem);
-        description = (EditText) findViewById(R.id.deviceDescription);
-        deviceList = (ListView) findViewById(R.id.nothardwareDevice);
-        deviceName = res.getStringArray(R.array.nonHardwareDeviceCategory);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
+
+        categoryContainer = "";
+        spinner = findViewById(R.id.spinner);
+        linearLayout = findViewById(R.id.listItem);
+        description = findViewById(R.id.deviceDescription);
+        deviceList = findViewById(R.id.nothardwareDevice);
+        deviceName = getResources().getStringArray(R.array.nonHardwareDeviceCategory);
+        addDeviceButton = findViewById(R.id.confirm_add);
 
         DeviceAdapter adapter = new DeviceAdapter();
         deviceList.setAdapter(adapter);
 
-        databaseDevices = FirebaseDatabase.getInstance().getReference("Device");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Device");
+        currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         deviceList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(AddDeviceActivity.this, "" +deviceName[position],Toast.LENGTH_SHORT).show();
-               // view.setBackgroundColor(res.getColor(R.color.inputBackground));
-                linearLayout.setBackgroundColor(res.getColor(R.color.inputBackground));
+                categoryContainer = deviceName[position];
+
             }
         });
 
-    }
+        addDeviceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id = databaseReference.push().getKey();
+                String bezeichnung = description.getText().toString();
+                String priority = spinner.getSelectedItem().toString();
 
-    public void addDevice(){
-        String bezeichnung = description.getText().toString().trim();
-        String priority = spinner.getSelectedItem().toString();
-        String category = "";
-        int icon = 1;
+                Device newDevice = new Device(id, currentUserId,Integer.parseInt(priority), bezeichnung, categoryContainer);
 
-        if(!TextUtils.isEmpty(bezeichnung) && priority != null){
-            String id = databaseDevices.push().getKey();
-            Device newDevice = new Device(id, Integer.parseInt(priority), bezeichnung, category, icon);
-        }
+                if(bezeichnung != null && priority != null && categoryContainer != null){
+                    databaseReference.setValue(newDevice, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                            if(databaseError != null){
+                                startActivity(new Intent(AddDeviceActivity.this,HomepageActivity.class));
+                            } else {
+                                Toast.makeText(AddDeviceActivity.this,databaseError.getMessage(),Toast.LENGTH_SHORT);
+                            }
+                        }
+                    });
+                }
+            }
+        });
 
     }
 
@@ -79,7 +101,7 @@ public class AddDeviceActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return drawable.length;
+            return deviceName.length;
         }
 
         @Override
@@ -97,9 +119,9 @@ public class AddDeviceActivity extends AppCompatActivity {
             convertView = getLayoutInflater().inflate(R.layout.devicecategorylayout,null);
 
             TextView textView = (TextView)convertView.findViewById(R.id.item);
-            ImageView imageView = (ImageView)convertView.findViewById(R.id.image_item);
+           // ImageView imageView = (ImageView)convertView.findViewById(R.id.image_item);
 
-            imageView.setImageResource(drawable[position]);
+           // imageView.setImageResource(drawable[position]);
             textView.setText(deviceName[position]);
 
             return convertView;
