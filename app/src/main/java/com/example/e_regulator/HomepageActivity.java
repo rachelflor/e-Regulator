@@ -34,9 +34,6 @@ public class HomepageActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +47,42 @@ public class HomepageActivity extends AppCompatActivity {
         noDevice = findViewById(R.id.no_device_text);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Device");
 
+
+        floatingButtonAdd = findViewById(R.id.floating_button);
+        floatingButtonClear = findViewById(R.id.floating_button_clear);
+        floatingButtonYellow = findViewById(R.id.floatingYellow);
+        floatingButtonPink = findViewById(R.id.floatingPink);
+
+        floatingButtonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTopButton();
+            }
+        });
+
+        floatingButtonClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideTopButton();
+            }
+        });
+
+        floatingButtonYellow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomepageActivity.this, AddDeviceActivity.class));
+                hideTopButton();
+            }
+        });
+    }
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         databaseReference.addValueEventListener(new ValueEventListener() {
             AddedDeviceAdapter adapter = new AddedDeviceAdapter(HomepageActivity.this,R.layout.deviceitem,arrayDeviceList);
-
-
-
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -88,36 +116,11 @@ public class HomepageActivity extends AppCompatActivity {
 
 
 
-        floatingButtonAdd = findViewById(R.id.floating_button);
-        floatingButtonClear = findViewById(R.id.floating_button_clear);
-        floatingButtonYellow = findViewById(R.id.floatingYellow);
-        floatingButtonPink = findViewById(R.id.floatingPink);
-
-        floatingButtonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTopButton();
-            }
-        });
-
-        floatingButtonClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hideTopButton();
-            }
-        });
-
-        floatingButtonYellow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomepageActivity.this, AddDeviceActivity.class));
-                hideTopButton();
-            }
-        });
     }
 
 
-        private void hideTopButton(){
+
+    private void hideTopButton(){
             floatingButtonAdd.show();
             floatingButtonClear.hide();
             floatingButtonYellow.hide();
