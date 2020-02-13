@@ -87,11 +87,12 @@ public class AddDeviceActivity extends AppCompatActivity {
                             if(databaseError != null){
                                 startActivity(new Intent(AddDeviceActivity.this,HomepageActivity.class));
                             } else {
-                                Toast.makeText(AddDeviceActivity.this,databaseError.getMessage(),Toast.LENGTH_SHORT);
+                                Toast.makeText(AddDeviceActivity.this,databaseError.toString(),Toast.LENGTH_SHORT);
                             }
                         }
                     });
                 }
+
             }
         });
 

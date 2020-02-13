@@ -6,7 +6,6 @@ public class Device {
     private int priority;
     private String description;
     private String category;
-    private int icon;
 
     public Device(String id,String userId, int priority, String description, String category) {
         this.id = id;
@@ -56,11 +55,4 @@ public class Device {
         this.category = category;
     }
 
-    public int getIcon() {
-        return icon;
-    }
-
-    public void setIcon(int icon) {
-        this.icon = icon;
-    }
 }
