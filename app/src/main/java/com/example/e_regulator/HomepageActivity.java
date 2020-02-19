@@ -20,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class HomepageActivity extends AppCompatActivity {
     private ArrayList<Device> arrayDeviceList;
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
+    private Device device;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +45,50 @@ public class HomepageActivity extends AppCompatActivity {
         getSupportActionBar().setIcon(R.drawable.ic_green_energy);
         getSupportActionBar().setTitle("Devices");
 
+        arrayDeviceList = new ArrayList<Device>(){
+            Device device1 = new Device("1","1",3,"some description","some category");
+            Device device2 = new Device("2","1",3,"some description","some category");
+
+        };
         deviceList = (ListView) findViewById(R.id.added_device_list);
         noDevice = findViewById(R.id.no_device_text);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Device");
+
+
+
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            AddedDeviceAdapter adapter = new AddedDeviceAdapter(HomepageActivity.this,arrayDeviceList);
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if(!dataSnapshot.hasChildren()){
+                    noDevice.setVisibility(View.VISIBLE);
+                } else {
+                        for(DataSnapshot data : dataSnapshot.getChildren()){
+                            /* String id = data.child("id").getValue(String.class);
+                             String userId = data.child("userId").getValue(String.class);
+                            // int priority = data.child("priority").getValue(Integer.class);
+                             String description = data.child("description").getValue(String.class);
+                             String category = data.child("category").getValue(String.class);
+
+
+                         device = new Device(id,userId,1,description,category); */
+
+                        arrayDeviceList.add(new Device("6","12",2,"new","new"));
+                    }
+                }
+
+                deviceList.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         floatingButtonAdd = findViewById(R.id.floating_button);
@@ -78,48 +121,6 @@ public class HomepageActivity extends AppCompatActivity {
 
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            AddedDeviceAdapter adapter = new AddedDeviceAdapter(HomepageActivity.this,R.layout.deviceitem,arrayDeviceList);
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if(!dataSnapshot.hasChildren()){
-                    noDevice.setVisibility(View.VISIBLE);
-                } else {
-                    for(DataSnapshot data : dataSnapshot.getChildren()){
-
-                        String id = data.child("id").getValue().toString();
-                        String userId = data.child("userId").getValue().toString();
-                        int priority = Integer.parseInt(data.child("priority").getValue().toString());
-                        String description = data.child("description").getValue().toString();
-                        String category = data.child("category").getValue().toString();
-
-
-                        Device device = new Device(id,userId,priority,description,category);
-                        arrayDeviceList.add(device);
-                    }
-                }
-
-                deviceList.setAdapter(adapter);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-    }
-
-
-
     private void hideTopButton(){
             floatingButtonAdd.show();
             floatingButtonClear.hide();
@@ -141,21 +142,16 @@ public class HomepageActivity extends AppCompatActivity {
             private Context context;
             private List<Device> devices;
 
-            public AddedDeviceAdapter(@NonNull Context context, int resource, @NonNull List<Device> devices) {
-                super(context, resource, devices);
+            public AddedDeviceAdapter(@NonNull Context context, @NonNull List<Device> devices) {
+                super(context, 0, devices);
                 this.context = context;
                 this.devices = devices;
             }
 
             @Override
             public int getCount() {
-                return 1;
+                return arrayDeviceList.size();
             }
-
-           /* @Override
-            public Object getItem(int position) {
-                return null;
-           }  */
 
             @Override
             public long getItemId(int position) {
@@ -164,14 +160,22 @@ public class HomepageActivity extends AppCompatActivity {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                convertView = getLayoutInflater().inflate(R.layout.deviceitem,null);
 
-                ImageView imageView = (ImageView)convertView.findViewById(R.id.item_icon_category);
-                TextView textView = (TextView)convertView.findViewById(R.id.item_description);
-                TextView textView1 = (TextView)convertView.findViewById(R.id.item_priority);
+                Device device = getItem(position);
+
+                if (convertView == null) {
+                    convertView = getLayoutInflater().inflate(R.layout.deviceitem,null);
+                }
+
+                TextView textView0 = (TextView)convertView.findViewById(R.id.item_category);
+                TextView textView1 = (TextView)convertView.findViewById(R.id.item_description);
+                TextView textView2 = (TextView)convertView.findViewById(R.id.item_priority);
+
+                textView0.setText(device.category);
+                textView1.setText(device.description);
+                textView2.setText(String.valueOf(device.priority));
 
                 return convertView;
             }
         }
-
     }

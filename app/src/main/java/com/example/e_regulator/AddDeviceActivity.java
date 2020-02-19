@@ -32,7 +32,6 @@ public class AddDeviceActivity extends AppCompatActivity {
     public Spinner  spinner;
     private ListView deviceList;
     private String [] deviceName;
-    private LinearLayout linearLayout;
     private Button addDeviceButton;
     public EditText description;
     private String categoryContainer;
@@ -51,7 +50,6 @@ public class AddDeviceActivity extends AppCompatActivity {
 
         categoryContainer = "";
         spinner = findViewById(R.id.spinner);
-        linearLayout = findViewById(R.id.listItem);
         description = findViewById(R.id.deviceDescription);
         deviceList = findViewById(R.id.nothardwareDevice);
         deviceName = getResources().getStringArray(R.array.nonHardwareDeviceCategory);
@@ -87,7 +85,7 @@ public class AddDeviceActivity extends AppCompatActivity {
                             if(databaseError != null){
                                 startActivity(new Intent(AddDeviceActivity.this,HomepageActivity.class));
                             } else {
-                                Toast.makeText(AddDeviceActivity.this,databaseError.toString(),Toast.LENGTH_SHORT);
+                                Toast.makeText(AddDeviceActivity.this,"Something went wrong! ",Toast.LENGTH_SHORT);
                             }
                         }
                     });

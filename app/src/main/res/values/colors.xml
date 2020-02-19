@@ -10,5 +10,6 @@
     <color name="pink">#ff4d4d </color>
     <color name="ic_logo_background">#FFFFFF</color>
     <color name="success">#4BB543</color>
+    <color name="deviceItemBackground">#f9f9f9</color>
 
 </resources>

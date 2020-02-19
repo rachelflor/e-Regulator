@@ -3,14 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/textColor"
+    android:background="@color/deviceItemBackground"
     tools:context=".HomepageActivity">
 
     <ListView
         android:id="@+id/added_device_list"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/deviceitem"
+        android:layout_height="match_parent"
+        android:dividerHeight="2dp"
+        android:layout_margin="20dp"
+        android:listSelector="@color/inputBackground"
     />
 
     <TextView

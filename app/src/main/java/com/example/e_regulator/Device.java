@@ -1,11 +1,13 @@
 package com.example.e_regulator;
 
 public class Device {
-    private String id;
-    private String userId;
-    private int priority;
-    private String description;
-    private String category;
+    public  String id;
+    public String userId;
+    public int priority;
+    public String description;
+    public String category;
+
+    public Device(){}
 
     public Device(String id,String userId, int priority, String description, String category) {
         this.id = id;
