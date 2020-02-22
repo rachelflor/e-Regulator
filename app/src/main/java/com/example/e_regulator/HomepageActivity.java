@@ -3,10 +3,13 @@ package com.example.e_regulator;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +38,7 @@ public class HomepageActivity extends AppCompatActivity {
     private FloatingActionButton floatingButtonAdd,
             floatingButtonClear,floatingButtonYellow,floatingButtonPink;
     private BottomNavigationView bottomNavigationView;
+    private LinearLayout layoutPriority;
     private TextView noDevice;
     private ListView deviceList;
     private ArrayList<Device> arrayDeviceList;
@@ -49,9 +54,11 @@ public class HomepageActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.ic_green_energy);
         getSupportActionBar().setTitle("Devices");
+        layoutPriority = findViewById(R.id.layout_priority);
+
 
         arrayDeviceList = new ArrayList<Device>();
-            Device device1 = new Device("1","1",3,"some description","some category");
+            final Device device1 = new Device("1","1",3,"some descriptionjhesjhjknsnjhsjkhgjhsojlizgofjlsiowjeiojwiorjiolsjkljtisojiosjtkljsijojlkjrsiojtioreoi","some category");
             Device device2 = new Device("2","1",3,"some description","some category");
 
         arrayDeviceList.add(device1);
@@ -85,8 +92,10 @@ public class HomepageActivity extends AppCompatActivity {
 
                          device = new Device(id,userId,1,description,category);
 
-                        arrayDeviceList.add(device);
-                    }
+                            arrayDeviceList.add(device);
+                            setPriorityColor(device);
+
+                        }
                 }
 
                 deviceList.setAdapter(adapter);
@@ -144,6 +153,15 @@ public class HomepageActivity extends AppCompatActivity {
             return true;
         }
     };
+
+    private void setPriorityColor(Device device){
+        if(device.priority == 3){
+            layoutPriority.setBackground(ContextCompat.getDrawable(this,R.drawable.drawable1));
+
+        } else if(device.priority == 1){
+            //layoutPriority.setBackground(getResources().getDrawable(R.drawable.drawable));
+        }
+    }
 
 
 

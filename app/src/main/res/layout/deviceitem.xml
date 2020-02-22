@@ -4,7 +4,7 @@
     android:id="@+id/device_item"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:background="@drawable/drawable"
     android:layout_marginBottom="50dp"
     android:focusableInTouchMode="true"
@@ -12,38 +12,35 @@
     android:padding="10dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:backgroundTint="@color/colorPrimary"
+        android:id="@+id/layout_categoryDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
         >
         <TextView
             android:id="@+id/item_category"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
         />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-
         <TextView
             android:id="@+id/item_description"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:gravity="start"
             />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/layout_priority"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:orientation="vertical"
         android:background="@drawable/drawable360"
-        android:layout_gravity="center">
+        android:layout_marginStart="10dp"
+        android:layout_gravity="end">
 
         <TextView
             android:id="@+id/item_priority"

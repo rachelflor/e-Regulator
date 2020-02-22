@@ -61,5 +61,7 @@
     <string name="joinCommunity">Share with community</string>
     <string name="sendmessagePlaceholder">Schreib eine Nachricht ...</string>
 
+    <string name="privateDataText">Persönlische Daten</string>
+
 
 </resources>
