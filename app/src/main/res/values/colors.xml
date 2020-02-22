@@ -11,5 +11,9 @@
     <color name="ic_logo_background">#FFFFFF</color>
     <color name="success">#4BB543</color>
     <color name="deviceItemBackground">#f9f9f9</color>
+    <color name="deviceBackground">#ececec</color>
+    <color name="darkgray">#dfdfdf</color>
+    <color name="extradarkgray">#d2d2d2</color>
+    <color name="graydark">#c5c5c5</color>
 
 </resources>

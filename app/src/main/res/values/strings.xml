@@ -23,6 +23,7 @@
     <string name="registrationError">Something went wrong. Please try again!</string>
     <string name="registrationSuccessfull">You are successfully registred!</string>
     <string name="registrationNotSuccessfull">Something went wrong. Please try again!</string>
+    <string name="noSavedDevices">Sie haben momentan keine Geraete gespeichert.</string>
 
     <string name="geraetDescription">Gerät Bezeichnung</string>
 
@@ -35,15 +36,12 @@
         <item>5</item>
     </string-array>
 
-    <string-array name="deviceCategorie">
+    <string-array name="nonHardwareDeviceCategory">
         <item>Smartphone</item>
         <item>Smartwatch</item>
         <item>Laptop</item>
         <item>Kopfhörer</item>
         <item>Tablet</item>
-    </string-array>
-
-    <string-array name="nonHardwareDeviceCategory">
         <item>Microwelle</item>
         <item>Kühlschrank</item>
         <item>Ofen</item>
@@ -54,8 +52,14 @@
 
     <string name="feedpage_title">Devices</string>
     <string name="communitypage_title">Community</string>
-
     <string name="message">Test</string>
+
+
+    <string name="forumWelcomeText">Teile deine Erfahrung mit Freunden.</string>
+    <string name="forumWelcomeText1">Teile deine Erfahrung auf sozialen Neztwerke.</string>
+    <string name="joinFriend">Share with a friend</string>
+    <string name="joinCommunity">Share with community</string>
+    <string name="sendmessagePlaceholder">Schreib eine Nachricht ...</string>
 
 
 </resources>

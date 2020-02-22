@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:orientation="vertical"
     tools:context=".AddDeviceActivity"
     android:padding="10dp"
@@ -13,15 +14,30 @@
     android:background="@color/textColor"
     app:flexWrap="wrap">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kategorie"
+            android:textSize="18sp"/>
     <ListView
         android:id="@+id/nothardwareDevice"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_marginBottom="20dp"
         android:focusableInTouchMode="true"
         android:headerDividersEnabled="false"
+        android:divider="@null"
+        android:dividerHeight="10.0sp"
+        android:padding="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/deviceItemBackground"
         android:listSelector="@color/inputBackground"
         />
+</LinearLayout>
     <EditText
         android:id="@+id/deviceDescription"
         android:layout_width="match_parent"
@@ -29,29 +45,41 @@
         android:background="@color/inputBackground"
         android:hint="@string/geraetDescription"
         android:padding="10dp"
+        android:layout_marginBottom="20dp"
         android:autofillHints="@string/geraetDescription"
         android:inputType="text" />
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Priorität"
+            android:textSize="18sp"/>
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="20dp"
         android:background="@color/inputBackground"
         android:entries="@array/priorities"
-        android:prompt="@string/lpriority"
-        android:spinnerMode="dropdown" />
+        android:spinnerMode="dropdown"
+        android:layout_gravity="center"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/confirm_add"
         style="@style/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
         android:text="@string/btnadd" />
 
-<include
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    layout="@layout/footerlayout"/>
+
 </LinearLayout>

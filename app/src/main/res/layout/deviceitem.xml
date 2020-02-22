@@ -2,10 +2,9 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/device_item"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:alpha="1"
     android:background="@drawable/drawable"
     android:layout_marginBottom="50dp"
     android:focusableInTouchMode="true"
@@ -15,7 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/inputBackground"
+        android:backgroundTint="@color/colorPrimary"
         >
         <TextView
             android:id="@+id/item_category"
@@ -28,7 +27,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         >
 
         <TextView
@@ -37,12 +36,22 @@
             android:layout_height="match_parent"
             />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/drawable360"
+        android:layout_gravity="center">
+
         <TextView
             android:id="@+id/item_priority"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
             />
-
 
     </LinearLayout>
 

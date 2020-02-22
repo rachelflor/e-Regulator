@@ -9,21 +9,20 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".FooterActivity" />
+        <activity android:name=".SharewithfriendActivity"/>
+        <activity
+            android:name=".SharewithcommunityActivity"
+            android:windowSoftInputMode="adjustResize"
+            />
         <activity
             android:name=".HomepageActivity"
             android:label="@string/feedpage_title" />
         <activity
             android:name=".CommunityActivity"
-            android:icon="@drawable/ic_group_black_24dp"
-            android:label="@string/forumlabel"
-            android:theme="@style/nav" />
+            android:label="@string/forumlabel" />
         <activity
             android:name=".ProfileActivity"
-            android:icon="@drawable/ic_account_circle_black_24dp"
-            android:label="@string/profillabel"
-            android:theme="@style/nav" />
+            android:label="@string/profillabel" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".AddDeviceActivity" />
         <activity

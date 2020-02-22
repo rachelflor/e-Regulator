@@ -3,10 +3,12 @@ package com.example.e_regulator;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -14,7 +16,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +33,7 @@ import java.util.List;
 public class HomepageActivity extends AppCompatActivity {
     private FloatingActionButton floatingButtonAdd,
             floatingButtonClear,floatingButtonYellow,floatingButtonPink;
+    private BottomNavigationView bottomNavigationView;
     private TextView noDevice;
     private ListView deviceList;
     private ArrayList<Device> arrayDeviceList;
@@ -45,13 +50,17 @@ public class HomepageActivity extends AppCompatActivity {
         getSupportActionBar().setIcon(R.drawable.ic_green_energy);
         getSupportActionBar().setTitle("Devices");
 
-        arrayDeviceList = new ArrayList<Device>(){
+        arrayDeviceList = new ArrayList<Device>();
             Device device1 = new Device("1","1",3,"some description","some category");
             Device device2 = new Device("2","1",3,"some description","some category");
 
-        };
+        arrayDeviceList.add(device1);
+        arrayDeviceList.add(device2);
         deviceList = (ListView) findViewById(R.id.added_device_list);
         noDevice = findViewById(R.id.no_device_text);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Device");
 
 
@@ -67,16 +76,16 @@ public class HomepageActivity extends AppCompatActivity {
                     noDevice.setVisibility(View.VISIBLE);
                 } else {
                         for(DataSnapshot data : dataSnapshot.getChildren()){
-                            /* String id = data.child("id").getValue(String.class);
+                             String id = data.child("id").getValue(String.class);
                              String userId = data.child("userId").getValue(String.class);
                             // int priority = data.child("priority").getValue(Integer.class);
                              String description = data.child("description").getValue(String.class);
                              String category = data.child("category").getValue(String.class);
 
 
-                         device = new Device(id,userId,1,description,category); */
+                         device = new Device(id,userId,1,description,category);
 
-                        arrayDeviceList.add(new Device("6","12",2,"new","new"));
+                        arrayDeviceList.add(device);
                     }
                 }
 
@@ -89,7 +98,6 @@ public class HomepageActivity extends AppCompatActivity {
 
             }
         });
-
 
         floatingButtonAdd = findViewById(R.id.floating_button);
         floatingButtonClear = findViewById(R.id.floating_button_clear);
@@ -118,6 +126,25 @@ public class HomepageActivity extends AppCompatActivity {
             }
         });
     }
+
+    public BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.feed:
+                    startActivity(new Intent(getApplication(), HomepageActivity.class));
+                    break;
+                case R.id.user:
+                    startActivity(new Intent(getApplication(), ProfileActivity.class));
+                    break;
+                case R.id.forum:
+                    startActivity(new Intent(getApplication(), CommunityActivity.class));
+                    break;
+            }
+            return true;
+        }
+    };
+
 
 
 
@@ -173,7 +200,7 @@ public class HomepageActivity extends AppCompatActivity {
 
                 textView0.setText(device.category);
                 textView1.setText(device.description);
-                textView2.setText(String.valueOf(device.priority));
+                textView2.setText(Integer.toString(device.priority));
 
                 return convertView;
             }
