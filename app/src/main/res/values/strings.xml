@@ -41,10 +41,8 @@
         <item>Smartwatch</item>
         <item>Laptop</item>
         <item>Kopfhörer</item>
-        <item>Tablet</item>
         <item>Microwelle</item>
         <item>Kühlschrank</item>
-        <item>Ofen</item>
     </string-array>
     <string name="title_feed">Übersicht</string>
     <string name="title_user">Profil</string>

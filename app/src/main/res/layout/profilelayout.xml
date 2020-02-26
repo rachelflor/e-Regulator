@@ -9,6 +9,7 @@
     android:paddingEnd="10dp"
     android:paddingStart="10dp"
     android:paddingTop="20dp"
+    android:background="@color/deviceItemBackground"
     tools:context=".ProfileActivity">
 
     <LinearLayout
@@ -25,16 +26,20 @@
         style="@style/privateDataStyle"
         />
         <ImageView
+            android:id="@+id/dropUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_arrow_drop_up_black_24dp" />
         <ImageView
+            android:id="@+id/dropDown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_arrow_drop_down_black_24dp"/>
+            android:background="@drawable/ic_arrow_drop_down_black_24dp"
+            android:visibility="gone"/>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/privateData_container"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -76,29 +81,34 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/drawable"
         android:orientation="horizontal"
-        android:layout_gravity="center"
         android:padding="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp">
         <TextView
+            android:id="@+id/saved_devices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Gespeicherte Devicves"
             style="@style/subPrivateDataStyle"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/saved_devices_container"
             />
         <LinearLayout
+            android:id="@+id/saved_devices_container"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/drawable360"
-            android:layout_gravity="end">
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10dp"
+            >
             <TextView
+                android:id="@+id/number_of_saved_devices"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -108,38 +118,47 @@
                 />
 
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/drawable"
         android:orientation="horizontal"
-        android:layout_gravity="center"
         android:padding="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp">
         <TextView
+            android:id="@+id/saved_picture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Gespeicherte Photos"
             style="@style/subPrivateDataStyle"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/saved_picture_icon"
             />
         <ImageView
+            android:id="@+id/saved_picture_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_gallery"
-            android:layout_gravity="end"/>
-    </LinearLayout>
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10dp"
+            />
+    </RelativeLayout>
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/logout"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@drawable/drawable"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingStart="10dp"
         >
         <ImageView
             android:layout_width="wrap_content"

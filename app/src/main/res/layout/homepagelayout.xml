@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/deviceBackground"
-    tools:context=".HomepageActivity">
+    tools:context=".HomepageActivity"
+    >
 
     <ListView
         android:id="@+id/added_device_list"
@@ -17,6 +18,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginBottom="70dp"
+        android:scrollbars="none"
         android:listSelector="@color/inputBackground"
     />
 
@@ -72,20 +75,6 @@
         app:borderWidth="0dp"
         android:src="@drawable/ic_devices_other_black_24dp"
         android:backgroundTint="@color/yellow"
-        android:clickable="true"
-        android:focusable="true"
-        android:visibility="gone"
-        />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingBlue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="20dp"
-        app:borderWidth="0dp"
-        android:src="@drawable/ic_kitchen_black_24dp"
-        android:backgroundTint="@color/blue"
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone"

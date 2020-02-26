@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.loginlayout);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_green_energy);
+        getSupportActionBar().setIcon(R.drawable.ic_green_energy_small);
         getSupportActionBar().setTitle(R.string.app_name);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
         authError = findViewById(R.id.auth_error);
         loginLengthError = findViewById(R.id.loginInputLength_error);
         newRegistration = findViewById(R.id.register_link);
-
-        menuNavigation = findViewById(R.id.nav_container);
 
 
         editPassword.addTextChangedListener(new TextWatcher() {

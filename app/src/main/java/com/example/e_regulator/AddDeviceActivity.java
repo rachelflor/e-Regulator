@@ -35,7 +35,9 @@ public class AddDeviceActivity extends AppCompatActivity {
     private Button addDeviceButton;
     public EditText description;
     private String categoryContainer;
-   // private int [] drawable =  {R.drawable.ic_microwave, R.drawable.ic_refrigerator, R.drawable.ic_kitchen_black_24dp};
+    private int icon;
+    private int [] drawable =  {R.drawable.ic_smartphonelol, R.drawable.ic_smartwatch,
+            R.drawable.ic_computer,R.drawable.ic_airpods, R.drawable.ic_oven, R.drawable.ic_refrigerator1};
 
     DatabaseReference databaseReference;
     String currentUserId;
@@ -65,7 +67,7 @@ public class AddDeviceActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 categoryContainer = deviceName[position];
-
+                icon = position +1;
             }
         });
 
@@ -76,13 +78,13 @@ public class AddDeviceActivity extends AppCompatActivity {
                 String bezeichnung = description.getText().toString();
                 String priority = spinner.getSelectedItem().toString();
 
-                Device newDevice = new Device(id, currentUserId,Integer.parseInt(priority), bezeichnung, categoryContainer);
+                Device newDevice = new Device(id, currentUserId,Integer.parseInt(priority), bezeichnung, categoryContainer, icon);
 
                 if(bezeichnung != null && priority != null && categoryContainer != null){
                     databaseReference.setValue(newDevice, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                            if(databaseError != null){
+                            if(databaseError == null){
                                 startActivity(new Intent(AddDeviceActivity.this,HomepageActivity.class));
                             } else {
                                 Toast.makeText(AddDeviceActivity.this,"Something went wrong! ",Toast.LENGTH_SHORT);
@@ -118,9 +120,9 @@ public class AddDeviceActivity extends AppCompatActivity {
             convertView = getLayoutInflater().inflate(R.layout.devicecategorylayout,null);
 
             TextView textView = (TextView)convertView.findViewById(R.id.item);
-           // ImageView imageView = (ImageView)convertView.findViewById(R.id.image_item);
+            ImageView imageView = (ImageView)convertView.findViewById(R.id.item_icon);
 
-           // imageView.setImageResource(drawable[position]);
+            imageView.setImageResource(drawable[position]);
             textView.setText(deviceName[position]);
 
             return convertView;

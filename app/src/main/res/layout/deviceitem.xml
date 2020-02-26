@@ -1,34 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/device_item"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@drawable/drawable"
     android:layout_marginBottom="50dp"
     android:focusableInTouchMode="true"
     android:headerDividersEnabled="false"
-    android:padding="10dp">
+    android:layout_gravity="center"
+    android:padding="10dp"
+    tools:context=".ItemActivity"
+    >
 
     <LinearLayout
         android:id="@+id/layout_categoryDescription"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/colorPrimary"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/layout_priority"
+
         >
-        <TextView
-            android:id="@+id/item_category"
+        <LinearLayout
+            android:id="@+id/category_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+         >
+         <ImageView
+             android:id="@+id/icon_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:background="@drawable/ic_smartphonelol"
+         />
+        <TextView
+            android:id="@+id/item_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/subPrivateDataStyle"
         />
+        </LinearLayout>
         <TextView
             android:id="@+id/item_description"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:gravity="start"
+            android:layout_marginStart="5dp"
+            style="@style/shareStyle"
             />
 
     </LinearLayout>
@@ -40,7 +63,9 @@
         android:orientation="vertical"
         android:background="@drawable/drawable360"
         android:layout_marginStart="10dp"
-        android:layout_gravity="end">
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+       >
 
         <TextView
             android:id="@+id/item_priority"
@@ -53,4 +78,4 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

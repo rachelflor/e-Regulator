@@ -38,12 +38,10 @@ public class HomepageActivity extends AppCompatActivity {
     private FloatingActionButton floatingButtonAdd,
             floatingButtonClear,floatingButtonYellow,floatingButtonPink;
     private BottomNavigationView bottomNavigationView;
-    private LinearLayout layoutPriority;
     private TextView noDevice;
     private ListView deviceList;
     private ArrayList<Device> arrayDeviceList;
     private DatabaseReference databaseReference;
-    private FirebaseDatabase firebaseDatabase;
     private Device device;
 
     @Override
@@ -52,17 +50,16 @@ public class HomepageActivity extends AppCompatActivity {
         setContentView(R.layout.homepagelayout);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_green_energy);
+        getSupportActionBar().setIcon(R.drawable.ic_green_energy_small);
         getSupportActionBar().setTitle("Devices");
-        layoutPriority = findViewById(R.id.layout_priority);
 
 
         arrayDeviceList = new ArrayList<Device>();
-            final Device device1 = new Device("1","1",3,"some descriptionjhesjhjknsnjhsjkhgjhsojlizgofjlsiowjeiojwiorjiolsjkljtisojiosjtkljsijojlkjrsiojtioreoi","some category");
-            Device device2 = new Device("2","1",3,"some description","some category");
+            // Device device1 = new Device("1","1",3,"somedescriptionjhesjhjknsnjhsjkhgjhsojlizgofjlsiowjeiojwiorjiolsjkljtisojiosjtkljsijojlkjrsiojtioreoi","some category",2);
+            //Device device2 = new Device("2","1",3,"somedescription","some category",3);
 
-        arrayDeviceList.add(device1);
-        arrayDeviceList.add(device2);
+        //arrayDeviceList.add(device1);
+        //arrayDeviceList.add(device2);
         deviceList = (ListView) findViewById(R.id.added_device_list);
         noDevice = findViewById(R.id.no_device_text);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -82,18 +79,27 @@ public class HomepageActivity extends AppCompatActivity {
                 if(!dataSnapshot.hasChildren()){
                     noDevice.setVisibility(View.VISIBLE);
                 } else {
-                        for(DataSnapshot data : dataSnapshot.getChildren()){
-                             String id = data.child("id").getValue(String.class);
-                             String userId = data.child("userId").getValue(String.class);
-                            // int priority = data.child("priority").getValue(Integer.class);
-                             String description = data.child("description").getValue(String.class);
-                             String category = data.child("category").getValue(String.class);
+                    Iterable<DataSnapshot> contactChildren = dataSnapshot.getChildren();
+
+                    for(DataSnapshot data : contactChildren){
+                            String id = data.child("id").getValue(String.class);
+                            String userId = data.child("userId").getValue(String.class);
+                            String description = data.child("description").getValue(String.class);
+                            String category = data.child("category").getValue(String.class);
+
+                            if(data.child("priority").exists() && data.child("icon").exists()){
+                                int priority = data.child("priority").getValue(Integer.class);
+                                int icon = data.child("icon").getValue(Integer.class);
+                                System.out.println(data.getValue());
+
+                                device = new Device(id,userId,priority,description,category,icon);
 
 
-                         device = new Device(id,userId,1,description,category);
+                            } else {
+                                device = new Device(id, userId, 8, description, category, 1);
 
+                            }
                             arrayDeviceList.add(device);
-                            setPriorityColor(device);
 
                         }
                 }
@@ -154,17 +160,6 @@ public class HomepageActivity extends AppCompatActivity {
         }
     };
 
-    private void setPriorityColor(Device device){
-        if(device.priority == 3){
-            layoutPriority.setBackground(ContextCompat.getDrawable(this,R.drawable.drawable1));
-
-        } else if(device.priority == 1){
-            //layoutPriority.setBackground(getResources().getDrawable(R.drawable.drawable));
-        }
-    }
-
-
-
 
     private void hideTopButton(){
             floatingButtonAdd.show();
@@ -215,10 +210,12 @@ public class HomepageActivity extends AppCompatActivity {
                 TextView textView0 = (TextView)convertView.findViewById(R.id.item_category);
                 TextView textView1 = (TextView)convertView.findViewById(R.id.item_description);
                 TextView textView2 = (TextView)convertView.findViewById(R.id.item_priority);
+                ImageView image = (ImageView)convertView.findViewById(R.id.icon_category);
 
                 textView0.setText(device.category);
                 textView1.setText(device.description);
                 textView2.setText(Integer.toString(device.priority));
+
 
                 return convertView;
             }
